@@ -58,7 +58,7 @@ def call(Map config = [:]) {
                                 sed -i "s#image:.*#image: ${REPO_URL}:${BUILD_NUMBER}#g" ${YAML_FILE}
                                 git add .
                                 git commit -m "Update ${IMAGE_NAME} Image to version ${BUILD_NUMBER}"
-                                git push https://${git_token}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:dev
+                                git push https://${git_token}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:stage
                             '''
                         }
                     }
