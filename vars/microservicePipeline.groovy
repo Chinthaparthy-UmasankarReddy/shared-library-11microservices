@@ -34,20 +34,20 @@ def call(Map config = [:]) {
                 }
             }
 
-            stage("ECR Image Pushing") {
-                steps {
-                    script {
+           // stage("ECR Image Pushing") {
+             //   steps {
+                //    script {
                         // Extracting registry URL from REPO_URL
-                        def registry = REPO_URL.split('/')[0]
-                        sh """
-                            aws --version
-                            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${registry}
-                            docker tag ${IMAGE_NAME}:latest ${REPO_URL}:${BUILD_NUMBER}
-                            docker push ${REPO_URL}:${BUILD_NUMBER}
-                        """
-                    }
-                }
-            }
+                 //       def registry = REPO_URL.split('/')[0]
+                   //     sh """
+                   //         aws --version
+                   //         aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${registry}
+                   //         docker tag ${IMAGE_NAME}:latest ${REPO_URL}:${BUILD_NUMBER}
+                   //         docker push ${REPO_URL}:${BUILD_NUMBER}
+                 //       """
+                //    }
+         //       }
+        //    }
 
             stage('Update Deployment file') {
                 steps {
