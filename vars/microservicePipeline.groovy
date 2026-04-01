@@ -4,7 +4,7 @@ def call(Map config = [:]) {
 
         environment {
             GIT_REPO_NAME = "${config.gitRepo}"
-            GIT_REPO_BRANCH = "${config.gitBranch}"
+            GIT_BRANCH    = "${config.gitBranch}"
             GIT_EMAIL     = "${config.gitEmail ?: 'suhasini143u@gmail.com'}"
             GIT_USER_NAME  = "${config.gitUser}"
             IMAGE_NAME     = "${config.serviceName}"
