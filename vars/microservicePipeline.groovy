@@ -19,7 +19,7 @@ def call(Map config = [:]) {
 
             stage('Checkout from Git') {
                 steps {
-                    git branch: 'dev', url: "https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git"
+                    git branch: 'stage', url: "https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git"
                 }
             }
 
