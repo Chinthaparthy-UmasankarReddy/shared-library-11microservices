@@ -4,6 +4,7 @@ def call(Map config = [:]) {
 
         environment {
             GIT_REPO_NAME = "${config.gitRepo}"
+            GIT_REPO_BRANCH = "${config.gitBranch}"
             GIT_EMAIL     = "${config.gitEmail ?: 'suhasini143u@gmail.com'}"
             GIT_USER_NAME  = "${config.gitUser}"
             IMAGE_NAME     = "${config.serviceName}"
@@ -19,7 +20,7 @@ def call(Map config = [:]) {
 
             stage('Checkout from Git') {
                 steps {
-                    git branch: 'stage', url: "https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git"
+                    git branch: '${GIT_REPO_BRANCH}', url: "https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git"
                 }
             }
 
@@ -59,7 +60,7 @@ def call(Map config = [:]) {
                                 sed -i "s#image:.*#image: ${REPO_URL}:${BUILD_NUMBER}#g" ${YAML_FILE}
                                 git add .
                                 git commit -m "Update ${IMAGE_NAME} Image to version ${BUILD_NUMBER}"
-                                git push https://${git_token}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:stage
+                                git push https://${git_token}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:${GIT_REPO_BRANCH}
                             '''
                         }
                     }
